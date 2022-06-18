@@ -1,4 +1,4 @@
-import React from 'react'
+import { React, useEffect, useState } from 'react'
 import Image from 'next/image'
 import SidebarLink from './SidebarLink'
 import { DotsHorizontalIcon, HomeIcon } from '@heroicons/react/solid'
@@ -13,6 +13,32 @@ import {
       } from "@heroicons/react/outline"
 
 function Sidebar() {
+  const [userName, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    (
+        async () => {
+
+            if(localStorage.getItem("jwt") != undefined){
+                var token = 'Bearer ' + localStorage.getItem("jwt")
+                const response = await fetch("https://localhost:44360/user", {
+                    method: 'GET',
+                    headers: {'content-type': 'application/json',
+                              'Authorization': token
+                    },
+                    credentials: "include"
+                 
+                })
+                const content = await response.json();
+                setUsername(content.username);
+                setEmail(content.email);
+            }
+        }
+
+    )();
+})
+
   return (
     <div className="hidden sm:flex flex-col items-center xl:items-start xl:w-[340px] p-2 fixed h-full">
       {/* Kwetter logo */}
@@ -37,8 +63,8 @@ function Sidebar() {
       <div className="text-[#d9d9d9] flex items-center justify-center hoverAnimation xl:ml-auto xl:-mr-5 mt-auto">
         <img src="https://www.nicepng.com/png/detail/79-795242_nicolas-cage-face-png-nicolas-cage.png" alt="" className="h-10 w-10 rounded-full xl:mr-2.5" />
         <div className="hidden leading-5 xl:inline">
-          <h4 className="font-bold ">janmdp</h4>
-          <p className="text-[#6e767d]">@janmdp</p>
+          <h4 className="font-bold ">{userName}</h4>
+          <p className="text-[#6e767d]">{email}</p>
         </div>
         <DotsHorizontalIcon className="hidden h-5 ml-10 xl:inline" />
       </div>
