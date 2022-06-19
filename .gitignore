@@ -87,3 +87,7 @@ tags
 # Ignore all local history of files
 .history
 .ionide
+node_modules/
+/test-results/
+/playwright-report/
+/playwright/.cache/
