@@ -20,7 +20,7 @@ export default function Home() {
 
             if(localStorage.getItem("jwt") != undefined){
                 var token = 'Bearer ' + localStorage.getItem("jwt")
-                const response = await fetch("https://localhost:44360/user", {
+                const response = await fetch("http://localhost:31751/user", {
                     method: 'GET',
                     headers: {'content-type': 'application/json',
                               'Authorization': token

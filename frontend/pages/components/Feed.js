@@ -22,7 +22,7 @@ function Feed({username}) {
           console.log("Finna run this code");
             var token = 'Bearer ' + localStorage.getItem("jwt")
 
-        await axios.get('https://localhost:44360/posts',
+        await axios.get('http://localhost:31751/posts',
         {
             headers: { 'content-type': 'application/json',
                         'Authorization': token}

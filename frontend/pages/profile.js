@@ -17,7 +17,7 @@ export default function Profile() {
 
                 if(localStorage.getItem("jwt") != undefined){
                     var token = 'Bearer ' + localStorage.getItem("jwt")
-                    const response = await fetch("https://localhost:44360/user", {
+                    const response = await fetch("http://localhost:31751/user", {
                         method: 'GET',
                         headers: {'content-type': 'application/json',
                                   'Authorization': token
@@ -39,7 +39,7 @@ const deleteAccount = async (e) => {
     e.preventDefault();
 
     var token = 'Bearer ' + localStorage.getItem("jwt")
-    const response = await fetch('https://localhost:44360/deleteuser?id=' + id, {
+    const response = await fetch('http://localhost:31751/deleteuser?id=' + id, {
             method: "DELETE",
             headers: {'Content-type': 'application/json',
             'Authorization': token

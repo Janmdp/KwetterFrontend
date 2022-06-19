@@ -11,6 +11,7 @@ import {
         UserIcon,
         DotsCircleHorizontalIcon
       } from "@heroicons/react/outline"
+import { Router } from 'next/router'
 
 function Sidebar() {
   const [userName, setUsername] = useState("");
@@ -22,7 +23,7 @@ function Sidebar() {
 
             if(localStorage.getItem("jwt") != undefined){
                 var token = 'Bearer ' + localStorage.getItem("jwt")
-                const response = await fetch("https://localhost:44360/user", {
+                const response = await fetch("http://localhost:31751/user", {
                     method: 'GET',
                     headers: {'content-type': 'application/json',
                               'Authorization': token
@@ -39,6 +40,10 @@ function Sidebar() {
     )();
 })
 
+const sendPost = async (e) => {
+  console.log("boop!");
+}
+
   return (
     <div className="hidden sm:flex flex-col items-center xl:items-start xl:w-[340px] p-2 fixed h-full">
       {/* Kwetter logo */}
@@ -48,16 +53,16 @@ function Sidebar() {
 
       {/* Sidebar buttons */}
       <div className="space-y-2.5 mt-4 mb-2.5 xl:ml-24">
-        <SidebarLink text="Home" Icon={HomeIcon} active/>
-        <SidebarLink text="Explore" Icon={HashtagIcon} active/>
-        <SidebarLink text="Notifications" Icon={BellIcon} active/>
-        <SidebarLink text="Messages" Icon={InboxIcon} active/>
-        <SidebarLink text="Bookmarks" Icon={BookmarkIcon} active/>
-        <SidebarLink text="Lists" Icon={ClipboardListIcon} active/>
-        <SidebarLink text="Profile" Icon={UserIcon} active/>
-        <SidebarLink text="More" Icon={DotsCircleHorizontalIcon} active/>
+        <SidebarLink text="Home" Icon={HomeIcon} link="" active/>
+        <SidebarLink text="Explore" Icon={HashtagIcon} link="" active/>
+        <SidebarLink text="Notifications" Icon={BellIcon} link="" active/>
+        <SidebarLink text="Messages" Icon={InboxIcon} link="" active/>
+        <SidebarLink text="Bookmarks" Icon={BookmarkIcon} link="" active/>
+        <SidebarLink text="Lists" Icon={ClipboardListIcon} link="" active/>
+        <SidebarLink onclick={sendPost} text="Profile" Icon={UserIcon} link="http://localhost:3000/profile" active/>
+        <SidebarLink text="More" Icon={DotsCircleHorizontalIcon} link="" active/>
       </div>
-      <buttton className="hidden xl:inline ml-auto bg-[#1d9bf0] text-white rounded-full w-56 h-[52px] text-lg font-bold shadow-md hover:bg-[#1a8cd8]">Tweet</buttton>
+      <button className="hidden xl:inline ml-auto bg-[#1d9bf0] text-white rounded-full w-56 h-[52px] text-lg font-bold shadow-md hover:bg-[#1a8cd8]">Tweet</button>
 
       {/* Sidebar user info */}
       <div className="text-[#d9d9d9] flex items-center justify-center hoverAnimation xl:ml-auto xl:-mr-5 mt-auto">

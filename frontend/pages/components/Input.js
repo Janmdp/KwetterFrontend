@@ -1,9 +1,11 @@
 import React from 'react'
 import {  useState } from 'react'
+import { useRouter } from 'next/router'
 
 function Input({userName}) {
 
   const [input, setInput] = useState("");
+  const router = useRouter();
 
   const sendPost = async (e) => {
     console.log("got into method");
@@ -12,7 +14,7 @@ function Input({userName}) {
       console.log("token is reachable");
       console.log(input);
       var token = 'Bearer ' + localStorage.getItem("jwt")
-    const response = await fetch('https://localhost:44360/createpost', {
+    const response = await fetch('http://localhost:31751/createpost', {
             method: "POST",
             headers: {'Content-type': 'application/json',
                       'Authorization': token},
@@ -23,7 +25,10 @@ function Input({userName}) {
                 Likes: 0
             })
            });
+
+           router.reload();
           }
+    
   }
 
   return (

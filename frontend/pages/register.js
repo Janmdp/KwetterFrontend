@@ -12,7 +12,7 @@ export default function Register() {
         e.preventDefault();
         /*All of this runs and passes throug the api */
         if(password == confirmPassword){
-          const response = await fetch('https://localhost:44360/createlogin', {
+          const response = await fetch('http://localhost:31751/createlogin', {
             method: "POST",
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify({

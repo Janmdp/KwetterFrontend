@@ -27,7 +27,7 @@ export default function Login() {
             }.bind(this)
           )
         })*/
-        await axios.post('https://localhost:44360/login', {    
+        await axios.post('http://localhost:31751/login', {    
             Email: email,
             Password: password  
         },
